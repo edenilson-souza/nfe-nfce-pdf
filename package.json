@@ -1,0 +1,59 @@
+{
+  "name": "nfe-nfce-pdf",
+  "version": "1.0.0",
+  "description": "Modulo que auxilia na geração de PDF da Danfe NFe e NFCe.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "/lib",
+    "package.json",
+    "README.md"
+  ],
+  "keywords": [
+    "NFe",
+    "NFCe",
+    "Danfe"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edenilson-souza/nfe-nfce-pdf.git"
+  },
+  "scripts": {
+    "version": "npm run prettier && npm run build && git add -A src",
+    "postversion": "git push && git push --tags && npm run publish",
+    "clean-lib": "npx rimraf lib",
+    "build": "npm run clean-lib && tsc -p tsconfig.json && npm run copy-fonts",
+    "prettier": "prettier src/**/*.{js,ts} --write",
+    "publish": "npm adduser && npm publish --access public",
+    "type": "tsc --project tsconfig.json",
+    "copy-fonts": "copyfiles -u 1 src/**/*.ttf lib/",
+    "test-pdf": "ts-node-dev --respawn --transpile-only ./tests/pdf.test.ts",
+    "test": "ts-node ./tests/pdf.test.ts"
+  },
+  "dependencies": {
+    "bwip-js": "4.2.0",
+    "date-fns": "2.29.3",
+    "pdfkit": "0.15.0",
+    "qrcode": "1.5.4",
+    "xml2js": "0.6.2"
+  },
+  "devDependencies": {
+    "@types/date-fns": "2.6.0",
+    "@types/node": "18.15.2",
+    "@types/pdfkit": "0.12.12",
+    "@types/qrcode": "1.5.5",
+    "@types/xml2js": "0.4.14",
+    "@typescript-eslint/eslint-plugin": "4.22.0",
+    "@typescript-eslint/parser": "4.22.0",
+    "copyfiles": "2.4.1",
+    "eslint": "7.25.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-prettier": "3.4.0",
+    "prettier": "2.2.1",
+    "rimraf": "5.0.0",
+    "ts-node": "10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "4.9.5"
+  }
+}
