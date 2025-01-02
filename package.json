@@ -1,6 +1,6 @@
 {
   "name": "nfe-nfce-pdf",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Modulo que auxilia na geração de PDF da Danfe NFe e NFCe.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/edenilson-souza/nfe-nfce-pdf.git"
+    "url": "git+https://github.com/edenilson-souza/nfe-nfce-pdf.git"
   },
   "scripts": {
     "version": "npm run prettier && npm run build && git add -A src",
