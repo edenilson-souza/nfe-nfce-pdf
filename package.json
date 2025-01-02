@@ -1,12 +1,12 @@
 {
   "name": "nfe-nfce-pdf",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Modulo que auxilia na geração de PDF da Danfe NFe e NFCe.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
   "files": [
-    "/src",
+    "/lib",
     "package.json",
     "README.md"
   ],
