@@ -46,11 +46,17 @@ export function getDadosAdicionais({
     margemTopo
   });
 
-  const informacoesComplementares = [infAdic.infCpl];
+  const informacoesComplementares = [
+    `Inf. Contribuinte: ${infAdic.infCpl}`,
+    `Inf. fisco: ${infAdic.infAdFisco}`
+    // infAdic.obsCont,
+    // infAdic.obsFisco,
+    // infAdic.procRef
+  ];
 
   normal({
     doc,
-    value: informacoesComplementares.join(' - '),
+    value: informacoesComplementares.join('\n'),
     x: 1,
     y: finalEspacoDet + 17.5,
     largura: 386,
