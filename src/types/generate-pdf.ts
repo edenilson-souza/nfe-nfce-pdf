@@ -264,6 +264,10 @@ export declare namespace GeneratePdf {
     margemTopo: number;
     larguraDoFormulario: number;
     infAdic: TNFeInfNFeInfAdic;
+    extra: {
+      vTotTrib?: string;
+      emailDest?: string;
+    };
     finalEspacoDet: number;
   };
 }

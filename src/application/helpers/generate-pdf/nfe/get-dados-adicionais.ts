@@ -14,6 +14,7 @@ export function getDadosAdicionais({
   margemDireita,
   larguraDoFormulario,
   infAdic,
+  extra,
   finalEspacoDet
 }: GeneratePdf.InputDadosAdicionais): void {
   linhaHorizontal({ x1: 0, x2: 0, y: finalEspacoDet + 8, doc, ajusteX, ajusteY, margemDireita, margemEsquerda, margemTopo });
@@ -47,8 +48,10 @@ export function getDadosAdicionais({
   });
 
   const informacoesComplementares = [
-    `Inf. Contribuinte: ${infAdic.infCpl}`,
-    `Inf. fisco: ${infAdic.infAdFisco}`
+    infAdic.infCpl ? `Inf. Contribuinte: ${infAdic.infCpl}` : undefined,
+    infAdic.infAdFisco ? `Inf. fisco: ${infAdic.infAdFisco}` : undefined,
+    extra.vTotTrib ? `Valor Aproximado dos Tributos : ${extra.vTotTrib}` : undefined,
+    extra.emailDest ? `Email do Destinatário: ${extra.emailDest}` : undefined
     // infAdic.obsCont,
     // infAdic.obsFisco,
     // infAdic.procRef
@@ -56,7 +59,7 @@ export function getDadosAdicionais({
 
   normal({
     doc,
-    value: informacoesComplementares.join('\n'),
+    value: informacoesComplementares.filter((a) => a).join('\n'),
     x: 1,
     y: finalEspacoDet + 17.5,
     largura: 386,

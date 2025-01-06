@@ -149,7 +149,8 @@ export async function criaLayout({
       margemDireita,
       margemEsquerda,
       margemTopo,
-      finalEspacoDet
+      finalEspacoDet,
+      extra: { vTotTrib: total.ICMSTot.vTotTrib, emailDest: dest.email }
     });
   }
 
