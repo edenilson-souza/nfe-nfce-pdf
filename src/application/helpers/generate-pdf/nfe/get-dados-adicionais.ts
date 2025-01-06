@@ -1,4 +1,5 @@
 import type { GeneratePdf } from '../../../../types';
+import { MoneyMaskBR } from '../../../../utils';
 import { linhaHorizontal } from './linha-horizontal';
 import { linhaVertical } from './linha-vertical';
 import { normal } from './normal';
@@ -50,16 +51,13 @@ export function getDadosAdicionais({
   const informacoesComplementares = [
     infAdic.infCpl ? `Inf. Contribuinte: ${infAdic.infCpl}` : undefined,
     infAdic.infAdFisco ? `Inf. fisco: ${infAdic.infAdFisco}` : undefined,
-    extra.vTotTrib ? `Valor Aproximado dos Tributos : ${extra.vTotTrib}` : undefined,
-    extra.emailDest ? `Email do Destinatário: ${extra.emailDest}` : undefined
-    // infAdic.obsCont,
-    // infAdic.obsFisco,
-    // infAdic.procRef
+    extra.emailDest ? `Email do Destinatário: ${extra.emailDest}` : undefined,
+    extra.vTotTrib ? `Valor Aproximado dos Tributos : ${MoneyMaskBR(Number(extra.vTotTrib ?? '0'))}` : undefined
   ];
 
   normal({
     doc,
-    value: informacoesComplementares.filter((a) => a).join('\n'),
+    value: informacoesComplementares.filter((a) => a).join(' - '),
     x: 1,
     y: finalEspacoDet + 17.5,
     largura: 386,
