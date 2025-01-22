@@ -1,3 +1,4 @@
+import OrDate from 'ordate';
 import { formatNumber } from '../../../../domain/use-cases/utils';
 import type { GeneratePdf } from '../../../../types';
 import { criaLayout } from './cria-layout';
@@ -54,7 +55,15 @@ export async function gerarItens({
       });
       normal({
         doc,
-        value: item.prod.xProd,
+        value: `${item.prod.xProd}${item.infAdProd ? `\n${item.infAdProd}` : ''}${
+          item.prod.rastro && item.prod.rastro.length > 0
+            ? `\n${item.prod.rastro.map((rast) => {
+                return `Lote:${rast.nLote} ${rast.dVal ? `Val:${OrDate.toUTC(rast.dVal).toLocaleDateString()}` : ''} ${
+                  rast.qLote ? `Qnt:${rast.qLote}` : ''
+                }`;
+              })}`
+            : ''
+        }`,
         x: 55.5,
         y,
         largura: 178,

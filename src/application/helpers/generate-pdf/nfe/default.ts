@@ -10,7 +10,7 @@ export const DEFAULT_NFE = {
   tamanhoDaFonteDoCampo: 9.5,
   alinhamentoDoCampo: 'center',
   corDoCampo: 'black',
-  tamanhoDaFonteDosItens: 7,
+  tamanhoDaFonteDosItens: 5.5,
   separadorDeItens: true,
   ajusteYDoLogotipo: 0,
   ajusteYDaIdentificacaoDoEmitente: 0,

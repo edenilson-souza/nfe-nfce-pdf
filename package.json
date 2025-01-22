@@ -1,6 +1,6 @@
 {
   "name": "nfe-nfce-pdf",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Modulo que auxilia na geração de PDF da Danfe NFe e NFCe.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -34,6 +34,7 @@
   "dependencies": {
     "bwip-js": "4.2.0",
     "date-fns": "2.29.3",
+    "ordate": "^0.0.1",
     "pdfkit": "0.15.0",
     "qrcode": "1.5.4",
     "xml2js": "0.6.2"
