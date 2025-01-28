@@ -1,6 +1,6 @@
 import OrDate from 'ordate';
 import { formatNumber } from '../../../../domain/use-cases/utils';
-import type { GeneratePdf } from '../../../../types';
+import type { GeneratePdf, TNFeInfNFeDetProdRastro } from '../../../../types';
 import { criaLayout } from './cria-layout';
 import { DEFAULT_NFE } from './default';
 import { linhaHorizontalTracejada } from './linha-horizontal-tracejada';
@@ -37,6 +37,18 @@ export async function gerarItens({
   let maiorY = doc.y;
   for (let i = 0; i < nf.NFe.infNFe.det.length; i++) {
     const item = nf.NFe.infNFe.det[i];
+    const rastroInfo = item.prod.rastro || item.rastro;
+    const formatRastro = (rast: TNFeInfNFeDetProdRastro) =>
+      `Lote:${rast.nLote} ${rast.dVal ? `Val:${OrDate.toUTC(rast.dVal).toLocaleDateString()}` : ''} ${
+        rast.qLote ? `Qnt:${rast.qLote}` : ''
+      }`.trim();
+    const rastroOutput = Array.isArray(rastroInfo)
+      ? rastroInfo.length > 0
+        ? `\n${rastroInfo.map(formatRastro).join('\n')}`
+        : ''
+      : rastroInfo?.nLote
+      ? formatRastro(rastroInfo)
+      : '';
 
     function renderizarLinha(pdf: any): number {
       const y = maiorY + 2;
@@ -55,15 +67,7 @@ export async function gerarItens({
       });
       normal({
         doc,
-        value: `${item.prod.xProd}${item.infAdProd ? `\n${item.infAdProd}` : ''}${
-          item.prod.rastro && item.prod.rastro.length > 0
-            ? `\n${item.prod.rastro.map((rast) => {
-                return `Lote:${rast.nLote} ${rast.dVal ? `Val:${OrDate.toUTC(rast.dVal).toLocaleDateString()}` : ''} ${
-                  rast.qLote ? `Qnt:${rast.qLote}` : ''
-                }`;
-              })}`
-            : ''
-        }`,
+        value: `${item.prod.xProd}${item.infAdProd ? `\n${item.infAdProd}` : ''}${rastroOutput}`,
         x: 55.5,
         y,
         largura: 178,

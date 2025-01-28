@@ -105,6 +105,7 @@ export interface TNFeInfNFeDet {
   imposto: TNFeInfNFeDetImposto;
   impostoDevol?: TNFeInfNFeDetImpostoDevol;
   infAdProd?: string;
+  rastro?: TNFeInfNFeDetProdRastro | TNFeInfNFeDetProdRastro[];
 }
 interface TNFeInfNFeDetImpostoDevol {
   pDevol: number;
@@ -518,10 +519,10 @@ interface TNFeInfNFeDetProd {
   xPed?: string;
   nItemPed?: string;
   nFCI?: string;
-  rastro?: TNFeInfNFeDetProdRastro[];
+  rastro?: TNFeInfNFeDetProdRastro | TNFeInfNFeDetProdRastro[];
   items?: object[];
 }
-interface TNFeInfNFeDetProdRastro {
+export interface TNFeInfNFeDetProdRastro {
   nLote: string;
   qLote: string;
   dFab: string;
