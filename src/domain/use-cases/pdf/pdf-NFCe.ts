@@ -622,8 +622,16 @@ export async function pdfNFCe(nf: NFeProc, pathLogo?: string): Promise<PDFKit.PD
     margemTopo: 0,
     alinhamento: 'center'
   });
-  const qrImage = await QRCode.toDataURL(NFe.infNFeSupl?.qrCode ?? '');
-  doc.image(qrImage, larguraPagina / 2 - 45, doc.y, { fit: [90, 90], align: 'center' });
+
+  if (NFe.infNFeSupl?.qrCode) {
+    try {
+      const qrImage = await QRCode.toDataURL(NFe.infNFeSupl?.qrCode ?? '');
+      doc.image(qrImage, larguraPagina / 2 - 45, doc.y, { fit: [90, 90], align: 'center' });
+    } catch (error) {
+      console.log('Error QRCode');
+    }
+  }
+
   doc.end();
   return doc;
 }

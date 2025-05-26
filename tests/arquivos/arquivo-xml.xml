@@ -2404,6 +2404,9 @@
         <infCpl>Teste de dados adcionais</infCpl>
       </infAdic>
     </infNFe>
+    <infNFeSupl>
+        <qrCode>QRCode</qrCode>
+    </infNFeSupl>
   </NFe>
   <protNFe versao="4.00"
     xmlns="http://www.portalfiscal.inf.br/nfe">
