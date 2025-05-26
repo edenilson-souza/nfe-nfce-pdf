@@ -23,6 +23,18 @@ export async function pdfNFCe(nf: NFeProc, pathLogo?: string): Promise<PDFKit.PD
       right: margemPadrao
     }
   });
+
+  if (pathLogo) {
+    try {
+      doc.image(pathLogo, larguraPagina / 2 - 25, margemPadrao, { fit: [50, 50], align: 'center' });
+      doc.y += 55;
+    } catch (error) {
+      doc.y += 5;
+    }
+  } else {
+    doc.y += 5;
+  }
+
   loadFontsNFCe(doc);
 
   negrito({
